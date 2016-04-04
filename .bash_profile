@@ -325,10 +325,12 @@ alias lss="ls -GhF" # no group, human readable, classify
 
 alias tre="tree -CshDL 1" # -L one level deep
 alias tre2="tree -CshDL 2" # -L two levels deep
+alias tre3="tree -CshDL 3" # -L two levels deep
 alias tred="tree -CshDd" # -d directories only
-alias trea="tree -CshDa" # -a all including '.' files
-alias trea1="tree -CshDaL 1" # -L one level deep, including '.' files
+alias trea="tree -CshDaL 1" # -L one level deep, including '.' files
 alias trea2="tree -CshDaL 2" # -L two levels deep, including '.' files
+alias trea3="tree -CshDaL 3" # -L two levels deep, including '.' files
+alias treaa="tree -CshDa" # -a all including '.' files
 alias tree="tree -CshD" # Color, size, date
 alias treee="tree"
 
@@ -336,10 +338,14 @@ alias sandbox="cd ~/dev/sandbox"
 alias exercises="cd ~/dev/exercises"
 alias projects="cd ~/dev/projects"
 
+alias obash="atom ~/.bash_profile"
+alias rbash="source ~/.bash_profile"
+
 alias rspecc="rspec -c"
 alias rspecf="rspec -c -fd"
 
 alias chro="open -a 'Google Chrome'"
+alias a="atom"
 
 # Create a new directory and enter it
 function md() {
@@ -358,6 +364,7 @@ alias gcm="git commit -m"
 alias gpo="git push origin"
 alias gpom="git push origin master"
 alias gphm="git push heroku master"
+alias go="git-open"
 
 alias gl="git log --all --oneline --graph --decorate"
 alias gpr="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"
@@ -372,6 +379,8 @@ alias hs-o="http-server -o"
 #  Environments & Settings
 ##############################
 
+. ~/dev/dotfiles/z.sh
+
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
@@ -384,9 +393,12 @@ export GITHUB_USERNAME='tylercrosse'
 export PATH="/usr/local/bin:$PATH"
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export NVM_DIR="/Users/tcrosse/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
