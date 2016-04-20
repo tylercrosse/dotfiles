@@ -334,10 +334,6 @@ alias treaa="tree -CshDa" # -a all including '.' files
 alias tree="tree -CshD" # Color, size, date
 alias treee="tree"
 
-alias sandbox="cd ~/dev/sandbox"
-alias exercises="cd ~/dev/exercises"
-alias projects="cd ~/dev/projects"
-
 alias obash="atom ~/.bash_profile"
 alias rbash="source ~/.bash_profile"
 
@@ -359,7 +355,6 @@ function md() {
 alias g="git"
 alias ga="git add"
 alias gs="git status"
-alias gc="git commit"
 alias gcm="git commit -m"
 alias gpo="git push origin"
 alias gpom="git push origin master"
@@ -368,6 +363,16 @@ alias go="git-open"
 
 alias gl="git log --all --oneline --graph --decorate"
 alias gpr="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"
+
+# github-email user https://github.com/paulirish/github-email
+
+# git clone & then cd
+function gc {
+  reponame=${1##*/}
+  reponame=${reponame%.git}
+  git clone "$1" "$reponame";
+  cd "$reponame";
+}
 
 ##############################
 #  Other Aliases
