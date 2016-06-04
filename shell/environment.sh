@@ -30,7 +30,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # z beats cd most of the time.
 #   github.com/rupa/z
-source ~/dev/dotfiles/shell/z.sh
+source ~/dev/dotfiles/z.sh
 
 # bash completion.
 if  which brew > /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
@@ -40,6 +40,7 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 # homebrew completion
+# https://github.com/Homebrew/legacy-homebrew/blob/4251efa88cc6cc3e937dd2d97cbf745a348d09e8/Library/Contributions/brew_bash_completion.sh
 if  which brew > /dev/null; then
     source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 fi;
