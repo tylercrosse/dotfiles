@@ -63,6 +63,11 @@ fi;
 #  Environments & Settings
 ##############################
 
+# https://gist.github.com/phette23/5270658#file-current-dir-in-iterm-tab-title-sh
+if [ $ITERM_SESSION_ID ]; then
+  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+fi
+
 export GITHUB_USERNAME='tylercrosse'
 export PATH="/usr/local/bin:$PATH"
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin

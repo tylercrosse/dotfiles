@@ -78,18 +78,22 @@ function la(){
 ##############################
 
 alias g="git"
+
+alias gba="git branch -a"
+alias gcb="git checkout -b"
+
 alias ga="git add"
 alias gs="git status"
 alias gcm="git commit -m"
-alias gpo="git push origin"
 alias gpom="git push origin master"
-alias gphm="git push heroku master"
 alias go="git-open"
 
 alias gl="git log --all --oneline --graph --decorate"
+alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias gpr="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"
 
-# github-email user https://github.com/paulirish/github-email
+# github-email <user> https://github.com/paulirish/github-email
+# diffshot https://github.com/RobertAKARobin/diffshot
 
 # git clone & then cd
 function gc {
@@ -99,11 +103,15 @@ function gc {
   cd "$reponame";
 }
 
+function gitsearch(){
+  git rev-list --all | xargs git grep -i $1
+}
+
 ##############################
 #  Other Aliases
 ##############################
 
-alias obash="atom ~/.bash_profile"
+alias obash="cd ~/dev/dotfiles; atom ."
 alias rbash="source ~/.bash_profile"
 
 alias rspecc="rspec -c"
@@ -120,6 +128,7 @@ alias w='ansiweather'
 #  Network Aliases
 ##############################
 
+alias jn="jupyter notebook"
 # Networking. IP address, dig, DNS
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias dig="dig +nocmd any +multiline +noall +answer"
