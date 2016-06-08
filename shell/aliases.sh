@@ -80,6 +80,7 @@ function la(){
 alias g="git"
 
 alias gba="git branch -a"
+alias gch="git checkout"
 alias gcb="git checkout -b"
 
 alias ga="git add"
@@ -116,6 +117,8 @@ alias rbash="source ~/.bash_profile"
 
 alias rspecc="rspec -c"
 alias rspecf="rspec -c -fd"
+
+alias rakestart="bundle; rake db:drop db:create db:migrate db:seed"
 
 alias chro="open -a 'Google Chrome'"
 alias a="atom"
