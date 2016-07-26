@@ -41,9 +41,9 @@ fi;
 
 # homebrew completion
 # https://github.com/Homebrew/legacy-homebrew/blob/4251efa88cc6cc3e937dd2d97cbf745a348d09e8/Library/Contributions/brew_bash_completion.sh
-if  which brew > /dev/null; then
-    source `brew --repository`/Library/Contributions/brew_bash_completion.sh
-fi;
+# if  which brew > /dev/null; then
+#     source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+# fi;
 
 # hub completion
 if  which hub > /dev/null; then
