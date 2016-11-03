@@ -32,11 +32,11 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 alias ag='ag -f --hidden'
 
 alias tre="tree -CshDL 1" # -L one level deep
-alias tre2="tree -CshDL 2" # -L two levels deep
-alias tre3="tree -CshDL 3" # -L two levels deep
+alias tre2="tree -CshDLI 2 'node_modules'" # -L two levels deep excluding node_modules
+alias tre3="tree -CshDLI 3 'node_modules'" # -L two levels deep
 alias tred="tree -CshDd" # -d directories only
 alias trea="tree -CshDaL 1" # -L one level deep, including '.' files
-alias trea2="tree -CshDaL 2" # -L two levels deep, including '.' files
+alias trea2="tree -CshDaLI 2" # -L two levels deep, including '.' files
 alias trea3="tree -CshDaL 3" # -L two levels deep, including '.' files
 alias treaa="tree -CshDa" # -a all including '.' files
 alias tree="tree -CshD" # Color, size, date
@@ -89,6 +89,8 @@ alias gcm="git commit -m"
 alias gpom="git push origin master"
 alias go="git-open"
 
+alias gbdm="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
+
 alias gl="git log --all --oneline --graph --decorate"
 alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias gpr="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"
@@ -113,6 +115,7 @@ function gitsearch(){
 ##############################
 
 alias obash="cd ~/dev/dotfiles; atom ."
+alias cbash="c ~/dev/dotfiles/shell/aliases.sh"
 alias rbash="source ~/.bash_profile"
 
 alias rspecc="rspec -c"
@@ -122,6 +125,7 @@ alias rakestart="bundle; rake db:drop db:create db:migrate db:seed"
 
 alias chro="open -a 'Google Chrome'"
 alias a="atom"
+alias typora="open -a 'Typora'"
 
 alias oops='$(thefuck $(fc -ln -1))'
 
