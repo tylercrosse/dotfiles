@@ -30,6 +30,7 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 
 # brew install the_silver_searcher
 alias ag='ag -f --hidden'
+alias agc='ag --color-line-number "2;39" --color-match "30;42" --color-path "1;4;37"'
 
 alias tre="tree -CshDL 1" # -L one level deep
 alias tre2="tree -CshDLI 2 'node_modules'" # -L two levels deep excluding node_modules
@@ -83,8 +84,13 @@ alias gba="git branch -a"
 alias gch="git checkout"
 alias gcb="git checkout -b"
 
+alias gd="git diff"
+alias gdc="git diff --cached"
+
 alias ga="git add"
 alias gs="git status"
+alias gco="git commit"
+alias gcoa="git commit --amend"
 alias gcm="git commit -m"
 alias gpom="git push origin master"
 alias go="git-open"
@@ -129,7 +135,27 @@ alias typora="open -a 'Typora'"
 
 alias oops='$(thefuck $(fc -ln -1))'
 
-alias w='ansiweather'
+alias v='vim'
+
+function w() {
+  curl wttr.in/$1
+}
+
+alias colortest="~/dev/dotfiles/colortest"
+
+function colors() {
+  e="\033["
+  for f in 0 7 `seq 6`; do
+    no="" bo=""
+    for b in n 7 0 `seq 6`; do
+      co="3$f"; p="  "
+      [ $b = n ] || { co="$co;4$b";p=""; }
+      no="${no}${e}${co}m   ${p}${co} ${e}0m"
+      bo="${bo}${e}1;${co}m ${p}1;${co} ${e}0m"
+    done
+    echo -e "$no\n$bo"
+  done  
+}
 
 ##############################
 #  Network Aliases
