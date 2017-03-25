@@ -26,7 +26,9 @@ alias cp='cp -v'
 ############################################
 
 # `cat` with beautiful colors. requires: sudo easy_install -U Pygments
-alias c='pygmentize -O style=monokai -f console256 -g'
+# alias c='pygmentize -O style=monokai -f console256 -g'
+# hicat https://github.com/rstacruz/hicat
+alias c='hicat'
 
 # brew install the_silver_searcher
 alias ag='ag -f --hidden'
@@ -154,7 +156,7 @@ function colors() {
       bo="${bo}${e}1;${co}m ${p}1;${co} ${e}0m"
     done
     echo -e "$no\n$bo"
-  done  
+  done
 }
 
 ##############################
@@ -167,6 +169,8 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias dig="dig +nocmd any +multiline +noall +answer"
 # wget sucks with certificates. Let's keep it simple.
 alias wget="curl -O"
+
+# "http" user-friendly curl alternative https://github.com/jakubroztocil/httpie
 
 alias hs-o="http-server -o"
 
