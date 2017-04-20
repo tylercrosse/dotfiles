@@ -32,6 +32,13 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 #   github.com/rupa/z
 source ~/dev/dotfiles/z.sh
 
+# fz completion https://github.com/changyuheng/fz
+if [ -d ~/.bash_completion.d ]; then
+  for file in ~/.bash_completion.d/*; do
+    . $file
+  done
+fi
+
 # bash completion.
 if  which brew > /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
     source "$(brew --prefix)/share/bash-completion/bash_completion";

@@ -25,11 +25,6 @@ alias cp='cp -v'
 #  Navigation - Search & Display
 ############################################
 
-# `cat` with beautiful colors. requires: sudo easy_install -U Pygments
-# alias c='pygmentize -O style=monokai -f console256 -g'
-# hicat https://github.com/rstacruz/hicat
-alias c='hicat'
-
 # brew install the_silver_searcher
 alias ag='ag -f --hidden'
 alias agc='ag --color-line-number "2;39" --color-match "30;42" --color-path "1;4;37"'
@@ -45,10 +40,26 @@ alias treaa="tree -CshDa" # -a all including '.' files
 alias tree="tree -CshD" # Color, size, date
 alias treee="tree"
 
-# find shorthand
+# fzf command line fuzzy finder https://github.com/junegunn/fzf
+export FZF_DEFAULT_OPTS='--color=16 --height 40% --reverse'
+
+# fzf shorthand
 function f() {
-	find . -name "$1" 2>&1 | grep -v 'Permission denied'
+	ag --hidden --ignore .git -g "" | fzf $1
 }
+
+# `cat` with beautiful colors. requires: sudo easy_install -U Pygments
+# alias c='pygmentize -O style=solarizedlight -f console256 -g'
+# hicat https://github.com/rstacruz/hicat
+alias c='hicat'
+
+# Pipe Highlight to less
+export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+export LESS=" -R"
+alias less='less -m -N -g -i --line-numbers --underline-special'
+
+# feed output of fzf to less, creates mini file browser
+alias cf='ag --hidden --ignore .git -g "" | fzf --bind "enter:execute(less {})"'
 
 # use coreutils `ls` if possible…
 hash gls >/dev/null 2>&1 || alias gls="ls"
