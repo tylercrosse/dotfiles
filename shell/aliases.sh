@@ -150,8 +150,12 @@ alias oops='$(thefuck $(fc -ln -1))'
 
 alias v='vim'
 
-function w() {
-  curl wttr.in/$1
+function wttr() {
+  local location=$1
+  if [ -z $location ] ; then
+    location="seattle"
+  fi
+  curl wttr.in/$location
 }
 
 alias colortest="~/dev/dotfiles/colortest"
