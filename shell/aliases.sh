@@ -119,7 +119,7 @@ alias gpr="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yel
 
 # git clone & then cd
 function gc {
-  reponame=${1##*/}
+  local reponame=${1##*/}
   reponame=${reponame%.git}
   git clone "$1" "$reponame";
   cd "$reponame";
@@ -161,11 +161,13 @@ function wttr() {
 alias colortest="~/dev/dotfiles/colortest"
 
 function colors() {
-  e="\033["
+  local e="\033["
   for f in 0 7 `seq 6`; do
-    no="" bo=""
+    local no=""
+    local bo=""
     for b in n 7 0 `seq 6`; do
-      co="3$f"; p="  "
+      local co="3$f";
+      local p="  "
       [ $b = n ] || { co="$co;4$b";p=""; }
       no="${no}${e}${co}m   ${p}${co} ${e}0m"
       bo="${bo}${e}1;${co}m ${p}1;${co} ${e}0m"
