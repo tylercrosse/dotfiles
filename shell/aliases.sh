@@ -14,7 +14,7 @@ function cdf() {  # short for cdfinder
 
 # Create a new directory and enter it
 function md() {
-	mkdir -p "$@" && cd "$@"
+  mkdir -p "$@" && cd "$@"
 }
 
 alias mv='mv -v'
@@ -45,7 +45,7 @@ export FZF_DEFAULT_OPTS='--color=16 --height 40% --reverse'
 
 # fzf shorthand
 function f() {
-	ag --hidden --ignore .git -g "" | fzf $1
+  ag --hidden --ignore .git -g "" | fzf $1
 }
 
 # `cat` with beautiful colors. requires: sudo easy_install -U Pygments
@@ -76,7 +76,7 @@ alias lss="ls -GhF" # no group, human readable, classify
 
 # List all files, long format, colorized, permissions in octal
 function la(){
- 	ls -l  "$@" | awk '
+   ls -l  "$@" | awk '
     {
       k=0;
       for (i=0;i<=8;i++)
@@ -187,42 +187,42 @@ alias hs-o="http-server -o"
 
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
-	local port="${1:-8000}"
-	open "http://localhost:${port}/" &
-	# statik is good because it won't expose hidden folders/files by default.
-	# npm install -g statik
-	statik --port "$port" .
+  local port="${1:-8000}"
+  open "http://localhost:${port}/" &
+  # statik is good because it won't expose hidden folders/files by default.
+  # npm install -g statik
+  statik --port "$port" .
 }
 
 # get gzipped size
 function gz() {
-	echo "orig size    (bytes): "
-	cat "$1" | wc -c
-	echo "gzipped size (bytes): "
-	gzip -c "$1" | wc -c
+  echo "orig size    (bytes): "
+  cat "$1" | wc -c
+  echo "gzipped size (bytes): "
+  gzip -c "$1" | wc -c
 }
 
 # whois a domain or a URL
 function whois() {
-	local domain=$(echo "$1" | awk -F/ '{print $3}') # get domain from URL
-	if [ -z $domain ] ; then
-		domain=$1
-	fi
-	echo "Getting whois record for: $domain …"
+  local domain=$(echo "$1" | awk -F/ '{print $3}') # get domain from URL
+  if [ -z $domain ] ; then
+    domain=$1
+  fi
+  echo "Getting whois record for: $domain …"
 
-	# avoid recursion
-	# this is the best whois server
-	# strip extra fluff
-	/usr/bin/whois -h whois.internic.net $domain | sed '/NOTICE:/q'
+  # avoid recursion
+  # this is the best whois server
+  # strip extra fluff
+  /usr/bin/whois -h whois.internic.net $domain | sed '/NOTICE:/q'
 }
 
 function localip(){
-	function _localip(){ echo "📶  "$(ipconfig getifaddr "$1"); }
-	export -f _localip
-	local purple="\x1B\[35m" reset="\x1B\[m"
-	networksetup -listallhardwareports | \
-		sed -r "s/Hardware Port: (.*)/${purple}\1${reset}/g" | \
-		sed -r "s/Device: (en.*)$/_localip \1/e" | \
-		sed -r "s/Ethernet Address:/📘 /g" | \
-		sed -r "s/(VLAN Configurations)|==*//g"
+  function _localip(){ echo "📶  "$(ipconfig getifaddr "$1"); }
+  export -f _localip
+  local purple="\x1B\[35m" reset="\x1B\[m"
+  networksetup -listallhardwareports | \
+    sed -r "s/Hardware Port: (.*)/${purple}\1${reset}/g" | \
+    sed -r "s/Device: (en.*)$/_localip \1/e" | \
+    sed -r "s/Ethernet Address:/📘 /g" | \
+    sed -r "s/(VLAN Configurations)|==*//g"
 }
