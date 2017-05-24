@@ -106,7 +106,7 @@ alias gco="git commit"
 alias gcoa="git commit --amend"
 alias gcm="git commit -m"
 alias gpom="git push origin master"
-alias go="git-open"
+alias gh="git-open"
 
 alias gbdm="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
 
