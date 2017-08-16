@@ -80,9 +80,9 @@ export PATH="/usr/local/bin:$PATH"
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
 # Python env
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
@@ -90,11 +90,7 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
 
 # Anaconda
-export PATH=$HOME/anaconda3/bin:$PATH
-
-# Node Version Manager
-export NVM_DIR="/Users/tcrosse/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export PATH=$HOME/anaconda3/bin:$PATH
 
 # Ruby Version Manager
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -104,5 +100,9 @@ export GOPATH=$HOME/Go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+
+# Node Version Manager
+export NVM_DIR="/Users/tcrosse/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

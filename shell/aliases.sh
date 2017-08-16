@@ -93,6 +93,7 @@ function la(){
 
 alias g="git"
 
+alias gb="git branch"
 alias gba="git branch -a"
 alias gch="git checkout"
 alias gcb="git checkout -b"
@@ -149,6 +150,20 @@ alias typora="open -a 'Typora'"
 alias oops='$(thefuck $(fc -ln -1))'
 
 alias v='vim'
+
+alias nrn="npm run"
+
+alias pj="NODE_ENV=production jest"
+
+function fix-yarn() {
+  echo "Performing: git checkout origin/master -- yarn.lock"
+  git checkout origin/master -- yarn.lock
+  echo "Performing: yarn install"
+  yarn install
+  echo "Performing: git add yarn.lock"
+  git add yarn.lock
+  echo "You should: git rebase --continue"
+}
 
 function wttr() {
   local location=$1
