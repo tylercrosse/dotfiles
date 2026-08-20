@@ -52,6 +52,14 @@ Machine-specific settings (work credentials, one-off PATH entries) go in
   the shell functions are built on first use.
 - Requires powerlevel10k at `~/dev/resources/powerlevel10k`; `install.sh` prints
   the clone command.
+- Three formulae come from third-party taps (`borders`, `peon-ping`,
+  `runpodctl`). Homebrew warns it "cannot check whether X is outdated because
+  its tap is not trusted" until you run `brew trust --formula <name>` once per
+  machine. The install still works; it is only the outdated-check that is
+  skipped.
+- `brew bundle check` reports self-updating casks (1password-cli, ngrok, warp,
+  temurin) as unsatisfied whenever a newer version exists upstream. That is an
+  update notice, not a missing package.
 
 ## Available but not linked
 

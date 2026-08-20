@@ -122,11 +122,11 @@ brew "z"
 # Fuzzy finder for coding agent session history
 brew "angristan/tap/fast-resume", trusted: true
 # Window borders for macOS (JankyBorders)
-brew "felixkratz/formulae/borders"
+brew "felixkratz/formulae/borders", trusted: true
 # Sound notifications for coding agents
-brew "peonping/tap/peon-ping"
+brew "peonping/tap/peon-ping", trusted: true
 # Command-line interface for RunPod
-brew "runpod/runpodctl/runpodctl"
+brew "runpod/runpodctl/runpodctl", trusted: true
 # Command-line interface for 1Password
 cask "1password-cli"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
