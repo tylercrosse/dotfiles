@@ -5,11 +5,24 @@ are the 2017 bash-era layout, kept for history.
 
 ```sh
 git clone git@github.com:tylercrosse/dotfiles.git ~/dev/dotfiles
+# No SSH key on this machine yet? The repo is public, so clone over HTTPS
+# instead, then `git remote set-url origin git@...` once keys are set up:
+#   git clone https://github.com/tylercrosse/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
-./install.sh --dry     # see what it would do
+brew bundle            # packages, casks, npm globals -- run BEFORE the
+                       # first new shell, or the aliases point at
+                       # binaries that are not installed yet
+./install.sh --dry     # see what it would replace
 ./install.sh           # symlink everything, backing up what's there
-brew bundle            # packages, casks, npm globals
 ```
+
+Clone somewhere other than `~/dev/dotfiles`? Set `DOTFILES` in `~/.zshrc.local`
+to match; `rc.zsh` defaults to `~/dev/dotfiles`.
+
+On a machine that already has a shell config, `install.sh` moves the existing
+files into a timestamped backup directory rather than deleting them. Read the
+old `.zshrc` out of that backup afterwards: anything machine-specific in it
+belongs in `~/.zshrc.local`.
 
 ## Layout
 
