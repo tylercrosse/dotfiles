@@ -62,7 +62,6 @@ link git/gitignore_global "$HOME/.gitignore_global"
 
 echo "editors:"
 link vim/vimrc   "$HOME/.vimrc"
-link p10k/p10k.zsh "$HOME/.p10k.zsh"
 
 # Linked file-by-file, not directory-by-directory: these apps keep state next
 # to their config (zed stores its prompt library and embeddings in ~/.config/zed,
@@ -83,8 +82,6 @@ if ! $DRY; then
 Not done automatically — run these yourself as needed:
 
   brew bundle --file=Brewfile          install packages and casks
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-      ~/dev/resources/powerlevel10k    the prompt theme
 
 Machine-specific settings go in ~/.zshrc.local (never tracked).
 MSG

@@ -8,12 +8,6 @@
 # path.zsh (for PATH) or completions.zsh (for completions), then revert here.
 # That review step is the whole point of the symlink.
 
-# Powerlevel10k instant prompt. Must stay close to the top. Anything that may
-# require console input (password prompts, [y/n] confirmations) goes above it.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export DOTFILES="${DOTFILES:-$HOME/dev/dotfiles}"
 
 source "$DOTFILES/zsh/path.zsh"
