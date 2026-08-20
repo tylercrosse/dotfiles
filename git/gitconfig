@@ -1,0 +1,62 @@
+[alias]
+	a = add
+	co = commit
+	cm = commit -m
+	coa = commit --amend
+	fpush = push --force
+	s = status
+	sclone = clone --depth=1
+	hreset = reset --hard
+	ch = checkout
+	df = diff --color --color-words --abbrev
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
+[core]
+	pager = delta
+	excludesFile = ~/.gitignore_global
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true    # use n and N to move between diff sections
+
+	# delta detects terminal colors automatically; set one of these to disable auto-detection
+	# dark = true
+	# light = true
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
+
+[color "branch"]
+	current = green reverse
+	local = green
+	remote = yellow
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+
+[user]
+	email = tylerscottcrosse@gmail.com
+	name = Tyler Crosse
+[push]
+	autoSetupRemote = true
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[difftool]
+	prompt = false
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false

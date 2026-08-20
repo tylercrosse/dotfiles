@@ -1,0 +1,9 @@
+.DS_Store
+
+# AI junk
+scratch/
+.claude/
+CLAUDE.md
+AGENTS.md
+
+**/.claude/settings.local.json

@@ -1,0 +1,35 @@
+execute pathogen#infect()
+
+syntax enable
+
+" Keep background transparent. Registered before `colorscheme` so it applies to
+" the initial load too, and again if the colorscheme is ever reloaded.
+augroup TransparentBG
+  autocmd!
+  autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE | highlight NormalNC ctermbg=NONE guibg=NONE | highlight SignColumn ctermbg=NONE guibg=NONE | highlight LineNr ctermbg=NONE guibg=NONE | highlight EndOfBuffer ctermbg=NONE guibg=NONE | highlight NormalFloat ctermbg=NONE guibg=NONE
+augroup END
+
+" Warp follows the macOS appearance, but vim can't detect the terminal's
+" background and falls back to light -- which paints solarized's light palette
+" onto a dark background and washes the text out. Ask macOS directly.
+function! SyncBackground() abort
+  if !has('mac')
+    return
+  endif
+  let l:want = system('defaults read -g AppleInterfaceStyle 2>/dev/null') =~# 'Dark'
+        \ ? 'dark' : 'light'
+  if &background !=# l:want
+    let &background = l:want
+  endif
+endfunction
+
+call SyncBackground()
+colorscheme solarized
+
+" Re-detect after switching macOS appearance with vim already open.
+command! SyncBg call SyncBackground() | redraw!
+nnoremap <silent> <Leader>bg :SyncBg<CR>
+
+:set number
+
+
