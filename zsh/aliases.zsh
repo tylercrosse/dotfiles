@@ -23,18 +23,10 @@ alias cp='cp -v'
 # indicators, and directories first are all built in, so the CLICOLOR_FORCE and
 # `hash gls || alias gls=ls` dance is gone. Add --icons to any of these if you
 # want glyphs; MesloLGS NF is installed, so they will render.
-alias ls='eza --all --classify --group-directories-first'
-alias ll='eza --all --long --classify --group-directories-first --git'
-alias lsl='eza --long --header --group-directories-first'
-alias lsd='eza --all --only-dirs'
-alias lss='eza --all --classify --oneline'
-
-# Tree views. --level replaces tree's -L; --git-ignore honours .gitignore, which
-# is usually what the old 'node_modules|.git|.venv' ignore list was reaching for.
-alias tre="eza --tree --level=1 --all"
-alias tre2="eza --tree --level=2 --all --git-ignore --ignore-glob='.git|node_modules|.venv'"
-alias tre3="eza --tree --level=3 --all --git-ignore --ignore-glob='.git|node_modules|.venv'"
-alias tred="eza --tree --only-dirs --level=2"
+# The eza-backed listing commands are functions, not aliases, and live in
+# functions.zsh: eza prints nothing when it gets no path argument and stdout is
+# not a terminal, so each one passes an explicit "." when called with no args.
+# Without that, `ls | grep foo` silently returns empty.
 
 ############################################
 #  Search & Display - ripgrep, fzf, bat

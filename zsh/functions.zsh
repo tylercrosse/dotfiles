@@ -30,6 +30,28 @@ la() {
 }
 
 ##############################
+#  Listing - eza
+##############################
+
+# eza replaces the old coreutils `gls` setup. These are functions rather than
+# aliases because bare `eza` with no path writes nothing when stdout is not a
+# terminal -- `ls | wc -l` would come back empty. "${@:-.}" supplies the "."
+# only when no path was given, so `ls` and `ls somedir` both behave.
+# Add --icons to any of these for glyphs; MesloLGS NF is installed.
+
+ls()   { eza --all --classify --group-directories-first "${@:-.}" }
+ll()   { eza --all --long --classify --group-directories-first --git "${@:-.}" }
+lsl()  { eza --long --header --group-directories-first "${@:-.}" }
+lsd()  { eza --all --only-dirs "${@:-.}" }
+lss()  { eza --all --classify --oneline "${@:-.}" }
+
+# Tree views. --level replaces tree's -L; --git-ignore honours .gitignore.
+tre()  { eza --tree --level=1 --all "${@:-.}" }
+tre2() { eza --tree --level=2 --all --git-ignore --ignore-glob='.git|node_modules|.venv' "${@:-.}" }
+tre3() { eza --tree --level=3 --all --git-ignore --ignore-glob='.git|node_modules|.venv' "${@:-.}" }
+tred() { eza --tree --only-dirs --level=2 "${@:-.}" }
+
+##############################
 #  Search
 ##############################
 
