@@ -68,10 +68,18 @@ Machine-specific settings (work credentials, one-off PATH entries) go in
 - The branch name is read from `.git/HEAD` rather than shelling out: 0.05ms per
   prompt in any repo, against ~10ms for `git rev-parse` and 77-162ms for
   `vcs_info`.
-- There is no dirty (✚/●) marker, because `git status` costs ~12ms in a normal
-  repo and ~450ms in a large one, every prompt. Adding it back properly means
-  running it in the background and redrawing with `zle` — worth doing if the
-  marker is missed, but it is real async plumbing, not a one-liner.
+- The `✚` dirty marker is one `git status --porcelain --ignore-submodules=all`.
+  That flag is the whole trick: without it git recurses into every submodule,
+  and grpc (16 submodules) costs 402ms instead of 32ms. Measured whole-prompt
+  cost is 11ms in a small repo, 34ms in grpc.
+- No async, no daemon, no prompt framework — those were measured and rejected.
+  `vcs_info` costs 77-162ms before touching the repo; starship's default config
+  costs 26ms small / 531ms in grpc, because it also shells out for python,
+  swift, and cmake versions. `gitstatusd` (what powerlevel10k runs) is the only
+  genuinely faster option, at the price of a background daemon per shell.
+- `core.fsmonitor` was tested and did not help: 58ms on vs 44ms off in grpc.
+- Set `PROMPT_NO_GIT_DIRTY=1` in `~/.zshrc.local` for a prompt that never
+  shells out at all (0.05ms, branch only).
 - Three formulae come from third-party taps (`borders`, `peon-ping`,
   `runpodctl`). Homebrew warns it "cannot check whether X is outdated because
   its tap is not trusted" until you run `brew trust --formula <name>` once per

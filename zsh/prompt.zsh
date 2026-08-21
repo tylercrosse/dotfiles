@@ -28,10 +28,11 @@ setopt prompt_subst
 # `vcs_info` ~33ms before it even looks at the repo; reading .git/HEAD costs
 # nothing measurable, and $(<file) is a zsh builtin that does not fork.
 #
-# Deliberately no dirty (✚/●) marker: computing one means `git status`, which
-# is ~12ms in a normal repo but ~450ms in a large one, on every prompt. Warp's
-# GitDiffStats chip covers it where it is most used. Doing it properly means
-# an async background job with a zle redraw -- worth adding if it is missed.
+# The dirty marker does shell out, once, to `git status`. Measured: 14ms in a
+# small repo, 32ms in grpc (9.5k files, 947MB). The flag doing the work is
+# --ignore-submodules=all -- without it git recurses into every submodule and
+# grpc costs 402ms instead of 32ms. That single flag is the whole reason this
+# needs no async machinery, no daemon, and no prompt framework.
 _prompt_git_branch() {
   local dir=$PWD gitdir head
   REPLY=
@@ -60,10 +61,23 @@ _prompt_git_branch() {
   fi
 }
 
+# Is the working tree dirty? One `git status`, submodules skipped. Set
+# PROMPT_NO_GIT_DIRTY=1 in ~/.zshrc.local to drop this and get a prompt that
+# never shells out at all.
+_prompt_git_dirty() {
+  [[ -n $PROMPT_NO_GIT_DIRTY ]] && return 1
+  [[ -n $(command git status --porcelain --ignore-submodules=all 2>/dev/null) ]]
+}
+
 _prompt_precmd() {
   local REPLY
   _prompt_git_branch
-  _PROMPT_GIT=${REPLY:+ %F{magenta}${REPLY}%f}
+  if [[ -n $REPLY ]]; then
+    _PROMPT_GIT=" %F{magenta}${REPLY}%f"
+    _prompt_git_dirty && _PROMPT_GIT+=" %F{yellow}✚%f"
+  else
+    _PROMPT_GIT=
+  fi
 }
 add-zsh-hook precmd _prompt_precmd
 
